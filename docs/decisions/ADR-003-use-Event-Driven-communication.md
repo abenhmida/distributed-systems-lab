@@ -17,3 +17,23 @@ Order Service
       │
       ▼
 Payment Service
+
+## Decision
+
+Business events will be propagated asynchronously through Kafka.
+
+## Example:
+```text
+Order Service
+      │
+      ▼
+OrderCreated
+      │
+      ▼
+Kafka
+      │
+      ├──────► Payment Service
+      │
+      ├──────► Inventory Service
+      │
+      └──────► Notification Service
