@@ -24,7 +24,7 @@ Business events will be propagated asynchronously through Kafka.
 
 ## Example:
 
-```
+```text
 Order Service
       │
       ▼
