@@ -74,3 +74,48 @@ through synchronous APIs and asynchronous events.
               ▼                  ▼
          PostgreSQL          Cassandra
 
+## Project Philosophy
+
+The goal is to explore not only how systems work when everything is healthy,
+but also what happens when things go wrong.
+
+Examples include:
+
+Kafka broker failure
+Consumer crashes
+Duplicate messages
+Network latency
+Database unavailability
+Partial transaction failure
+Consumer lag
+Hot partitions
+Service timeouts
+
+The project focuses on understanding the trade-offs involved in each
+architectural decision.
+
+Status
+
+🚧 Work in Progress
+
+The project is being developed incrementally.
+
+Each phase introduces new architectural concepts and implementation
+challenges.
+
+## Author
+
+**Senior Software Engineer / Software Architect**
+
+18+ years of experience in:
+
+Java
+Kotlin
+Microservices
+Distributed Systems
+Apache Kafka
+Apache Cassandra
+
+## License
+
+**MIT**
