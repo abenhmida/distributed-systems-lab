@@ -17,6 +17,7 @@ Order Service
       │
       ▼
 Payment Service
+```
 
 ## Decision
 
@@ -38,3 +39,4 @@ Kafka
       ├──────► Inventory Service
       │
       └──────► Notification Service
+```
