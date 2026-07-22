@@ -48,3 +48,11 @@ Database Transaction
 - Outbox cleanup required
 - Duplicate events are possible
 - Consumers must be idempotent
+
+## Important Principle
+
+The Outbox Pattern provides reliable event publication.
+
+It does not automatically guarantee exactly-once business processing.
+
+Therefore, consumers must be designed to handle duplicate events safely.
