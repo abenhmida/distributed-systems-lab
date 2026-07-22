@@ -73,6 +73,7 @@ through synchronous APIs and asynchronous events.
               │                  │
               ▼                  ▼
          PostgreSQL          Cassandra
+```
 
 ## Project Philosophy
 
@@ -94,7 +95,7 @@ Service timeouts
 The project focuses on understanding the trade-offs involved in each
 architectural decision.
 
-Status
+## Status
 
 🚧 Work in Progress
 
