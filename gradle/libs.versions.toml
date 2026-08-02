@@ -27,6 +27,7 @@ slf4j = "2.0.17"
 
 # Testing
 junit = "5.13.3"
+junit-platform = "1.10.1"
 mockk = "1.14.5"
 assertj = "3.27.7"
 
@@ -58,6 +59,9 @@ slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 
 spring-boot-test = { module = "org.springframework.boot:spring-boot-starter-test" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform" }
+junit-platform-suite = { module = "org.junit.platform:junit-platform-suite", version.ref = "junit-platform" }
+
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 testcontainers = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }

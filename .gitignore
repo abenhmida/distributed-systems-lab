@@ -4,3 +4,4 @@
 build/reports
 distributed-systems-lab.iml
 shared/common/build
+services/order-service/build
