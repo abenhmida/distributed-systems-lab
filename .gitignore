@@ -1,3 +1,5 @@
 .gradle
 .idea
 /docs/book/
+build/reports
+distributed-systems-lab.iml

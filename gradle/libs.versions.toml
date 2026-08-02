@@ -1,0 +1,87 @@
+[versions]
+# Language
+kotlin = "2.3.20"
+
+# JVM
+java = "21"
+
+# Spring
+spring-boot = "3.5.0"
+spring-dependency-management = "1.1.7"
+
+# Database
+postgresql = "42.8.0"
+flyway = "11.8.2"
+
+# Messaging
+kafka = "4.1.0"
+
+# Serialization
+jackson = "2.19.1"
+
+# Validation
+jakarta-validation = "3.1.1"
+
+# Logging
+slf4j = "2.0.17"
+
+# Testing
+junit = "5.13.3"
+mockk = "1.14.5"
+assertj = "3.27.4"
+
+# Containers
+testcontainers = "1.21.3"
+
+# Static Analysis
+detekt = "1.23.8"
+ktlint = "13.0.0"
+
+# Coverage
+jacoco = "0.8.13"
+
+# Observability
+micrometer = "1.15.1"
+opentelemetry = "1.51.0"
+
+[libraries]
+spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter" }
+spring-boot-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-boot-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+spring-boot-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-boot-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+flyway = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
+kafka-clients = { module = "org.apache.kafka:kafka-clients", version.ref = "kafka" }
+jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+
+spring-boot-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+testcontainers = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
+testcontainers-junit = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
+testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+kotlin-jpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlin" }
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+
+[bundles]
+spring-web = [
+    "spring-boot-web",
+    "spring-boot-validation",
+    "jackson-module-kotlin"
+]
+
+testing = [
+    "junit-jupiter",
+    "mockk",
+    "assertj"
+]
