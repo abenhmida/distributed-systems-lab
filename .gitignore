@@ -3,3 +3,4 @@
 /docs/book/
 build/reports
 distributed-systems-lab.iml
+shared/common/build

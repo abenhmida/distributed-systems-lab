@@ -28,7 +28,7 @@ slf4j = "2.0.17"
 # Testing
 junit = "5.13.3"
 mockk = "1.14.5"
-assertj = "3.27.4"
+assertj = "3.27.7"
 
 # Containers
 testcontainers = "1.21.3"
