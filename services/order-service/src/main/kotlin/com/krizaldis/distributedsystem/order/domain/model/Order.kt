@@ -24,6 +24,20 @@ class Order private constructor(
             )
             return order
         }
+
+        fun restore(
+            id: OrderId,
+            customerId: String,
+            status: OrderStatus,
+            items: List<OrderItem>,
+        ): Order {
+            return Order(
+                id = id,
+                customerId = customerId,
+                items = mutableListOf(),
+                status = status
+            )
+        }
     }
 
     fun items(): List<OrderItem> = items.toList()

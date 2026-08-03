@@ -14,11 +14,14 @@ dependencies {
     implementation(libs.spring.boot.validation)
     implementation(libs.spring.boot.data.jpa)
     implementation(libs.flyway)
+    implementation(libs.flyway.database.postgresql)
     runtimeOnly(libs.postgresql)
     testImplementation(libs.spring.boot.test)
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.assertj)
     testImplementation(libs.mockk)
+
+    implementation(libs.kotlin.reflect)
 }
 
 tasks.test {
