@@ -1,6 +1,5 @@
 package com.krizaldis.distributedsystem.order.application.service
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.krizaldis.common.id.OrderId
 import com.krizaldis.common.result.Result
 import com.krizaldis.common.result.success
@@ -12,6 +11,8 @@ import com.krizaldis.distributedsystem.order.application.port.outbound.SaveOrder
 import com.krizaldis.distributedsystem.order.domain.model.Money
 import com.krizaldis.distributedsystem.order.domain.model.Order
 import com.krizaldis.distributedsystem.order.domain.model.OrderItem
+import com.krizaldis.distributedsystem.order.infrastructure.outbox.OutboxEventFactory
+import com.krizaldis.distributedsystem.order.infrastructure.outbox.OutboxRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -19,7 +20,8 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 class CreateOrderService(
     private val saveOrderPort: SaveOrderPort,
-    private val mapper: OrderMapper,
+    private val outboxRepository: OutboxRepository,
+    private val outboxFactory: OutboxEventFactory
 ) : CreateOrderUseCase {
     override fun create(command: CreateOrderCommand): Result<OrderDto> {
         val order = Order.create(
@@ -38,8 +40,19 @@ class CreateOrderService(
         )
         val savedOrder = saveOrderPort.save(order)
 
+        order.domainEvents()
+            .map {
+                outboxFactory.from(
+                    aggregateType = "Order",
+                    event = it
+                )
+            }
+            .forEach(outboxRepository::save)
+
+        order.clearDomainEvents()
+
         return success(
-            mapper.toOrder(savedOrder)
+            OrderMapper.toOrder(savedOrder)
         )
     }
 }

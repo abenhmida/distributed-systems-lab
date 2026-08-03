@@ -23,7 +23,6 @@ class CreateOrderControllerIT {
             post("/api/v1/orders")
                 .contentType(APPLICATION_JSON)
                 .content(
-
                     """
                 {
                   "customerId":"customer-1",

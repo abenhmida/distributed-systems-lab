@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional(readOnly = true)
 class GetOrderService(
     private val loadOrderPort: LoadOrderPort,
-    private val mapper: OrderMapper
 ) : GetOrderUseCase {
 
     override fun get(orderId: OrderId): Result<OrderDto> {
@@ -25,6 +24,6 @@ class GetOrderService(
                 )
             )
 
-        return success(mapper.toOrder(order))
+        return success(OrderMapper.toOrder(order))
     }
 }

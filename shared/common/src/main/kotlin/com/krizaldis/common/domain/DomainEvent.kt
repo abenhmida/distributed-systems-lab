@@ -1,10 +1,10 @@
 package com.krizaldis.common.domain
 
+import com.krizaldis.common.id.EventId
 import java.time.Instant
-import java.util.UUID
 
 interface DomainEvent {
-    val eventId: UUID
+    val eventId: EventId
     val version: Int
     val occurredAt: Instant
     val eventType: String

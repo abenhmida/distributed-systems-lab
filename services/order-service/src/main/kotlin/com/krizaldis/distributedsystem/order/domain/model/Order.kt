@@ -1,8 +1,11 @@
 package com.krizaldis.distributedsystem.order.domain.model
 
 import com.krizaldis.common.domain.AggregateRoot
+import com.krizaldis.common.id.EventId
 import com.krizaldis.common.id.OrderId
+import com.krizaldis.distributedsystem.order.domain.event.OrderCreated
 import com.krizaldis.distributedsystem.order.domain.exception.InvalidOrderStateException
+import java.time.Instant
 
 class Order private constructor(
     id: OrderId,
@@ -22,6 +25,19 @@ class Order private constructor(
                 items = items.toMutableList(),
                 status = OrderStatus.CREATED
             )
+
+            order.registerEvent(
+                OrderCreated(
+                    eventId = EventId.random(),
+                    occurredAt = Instant.now(),
+                    aggregateId = order.id.toString(),
+                    customerId = customerId,
+                    totalAmount = order.total()
+                        .amount
+                        .toPlainString()
+                )
+            )
+
             return order
         }
 

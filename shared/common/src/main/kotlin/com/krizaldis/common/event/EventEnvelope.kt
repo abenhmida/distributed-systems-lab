@@ -1,6 +1,6 @@
-package com.krizaldis.common.domain
+package com.krizaldis.common.event
 
 data class EventEnvelope<T>(
     val metadata: EventMetadata,
-    val payload: T,
+    val payload: T
 )

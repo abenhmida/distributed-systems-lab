@@ -1,5 +1,6 @@
 package com.krizaldis.common.domain
 
+import com.krizaldis.common.event.EventMetadata
 import java.time.Clock
 import java.util.UUID
 
@@ -9,15 +10,17 @@ object EventFactory {
         version: Int,
         aggregateId: String,
         clock: Clock = Clock.systemUTC(),
+        aggregateType: String,
     ): EventMetadata {
         return EventMetadata(
-            eventId = UUID.randomUUID(),
+            eventId = UUID.randomUUID().toString(),
             eventType = eventType,
             version = version,
             aggregateId = aggregateId,
             occurredAt = clock.instant(),
-            correlationId = UUID.randomUUID(),
-            causationId = null
+            correlationId = UUID.randomUUID().toString(),
+            causationId = null,
+            aggregateType = aggregateType,
         )
     }
 }

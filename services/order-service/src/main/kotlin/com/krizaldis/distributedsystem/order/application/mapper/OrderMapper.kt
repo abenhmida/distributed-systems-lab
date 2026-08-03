@@ -4,7 +4,6 @@ import com.krizaldis.distributedsystem.order.application.dto.OrderDto
 import com.krizaldis.distributedsystem.order.domain.model.Order
 import org.springframework.stereotype.Component
 
-@Component
 object OrderMapper {
     fun toOrder(order: Order): OrderDto = OrderDto(
         id = order.id.toString(),

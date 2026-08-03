@@ -9,6 +9,7 @@ class EventMetadataTest {
     fun `should create event metadata`(): Unit {
         val metadata = EventFactory.metadata(
             eventType = "OrderCreated",
+            aggregateType = "Order",
             version = 1,
             aggregateId = "123",
         )
