@@ -1,0 +1,241 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: dsl-postgres-order
+    environment:
+      POSTGRES_DB: orders
+      POSTGRES_USER: orders
+      POSTGRES_PASSWORD: orders
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  #postgres-payment:
+  #  image: postgres:15
+  #  container_name: lab-postgres-payment
+  #  environment:
+  #    POSTGRES_DB: payment_db
+  #    POSTGRES_USER: payment_user
+  #    POSTGRES_PASSWORD: secret
+  #  volumes:
+  #    - postgres-payment-data:/var/lib/postgresql/data
+  #  ports:
+  #    - "5433:5432"
+  #  networks:
+  #    - lab-network
+#
+  #cassandra:
+  #  image: cassandra:4.1
+  #  container_name: lab-cassandra
+  #  environment:
+  #    - CASSANDRA_CLUSTER_NAME=DistributedSystemsLab
+  #    - CASSANDRA_DC=dc1
+  #    - CASSANDRA_RACK=rack1
+  #    - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+  #    - CASSANDRA_NUM_TOKENS=256
+  #    - MAX_HEAP_SIZE=512M
+  #    - HEAP_NEWSIZE=100M
+  #  volumes:
+  #    - cassandra-data:/var/lib/cassandra
+  #    - ./infrastructure/cassandra/init.cql:/docker-entrypoint-initdb.d/init.cql
+  #  ports:
+  #    - "9042:9042"  # CQL
+  #    - "7199:7199"  # JMX
+  #  networks:
+  #    - lab-network
+  #  healthcheck:
+  #    test: ["CMD-SHELL", "cqlsh -e 'describe keyspaces'"]
+  #    interval: 15s
+  #    timeout: 10s
+  #    retries: 10
+
+  kafka-1:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka-1
+    hostname: kafka-1
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093,EXTERNAL://0.0.0.0:9094
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1:9092,EXTERNAL://localhost:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 2
+      KAFKA_MIN_INSYNC_REPLICAS: 2
+      CLUSTER_ID: "MkU3OEVBNTcwNTJENDM2Qk"
+    volumes:
+      - kafka-1-data:/var/lib/kafka/data
+    ports:
+      - "9094:9094"
+    networks:
+      - kafka-network
+
+  kafka-2:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka-2
+    hostname: kafka-2
+    environment:
+      KAFKA_NODE_ID: 2
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093,EXTERNAL://0.0.0.0:9094
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-2:9092,EXTERNAL://localhost:9095
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 2
+      KAFKA_MIN_INSYNC_REPLICAS: 2
+      CLUSTER_ID: "MkU3OEVBNTcwNTJENDM2Qk"
+    volumes:
+      - kafka-2-data:/var/lib/kafka/data
+    ports:
+      - "9095:9094"
+    networks:
+      - kafka-network
+
+  kafka-3:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka-3
+    hostname: kafka-3
+    environment:
+      KAFKA_NODE_ID: 3
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093,EXTERNAL://0.0.0.0:9094
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-3:9092,EXTERNAL://localhost:9096
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 2
+      KAFKA_MIN_INSYNC_REPLICAS: 2
+      CLUSTER_ID: "MkU3OEVBNTcwNTJENDM2Qk"
+    volumes:
+      - kafka-3-data:/var/lib/kafka/data
+    ports:
+      - "9096:9094"
+    networks:
+      - kafka-network
+
+  # ... (schema-registry and kafka-ui same as before)
+  schema-registry:
+    image: confluentinc/cp-schema-registry:latest
+    container_name: schema-registry
+    hostname: schema-registry
+    depends_on:
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka-1:9092,PLAINTEXT://kafka-2:9092,PLAINTEXT://kafka-3:9092
+      SCHEMA_REGISTRY_KAFKASTORE_TOPIC: _schemas
+      SCHEMA_REGISTRY_KAFKASTORE_TOPIC_REPLICATION_FACTOR: 3
+      SCHEMA_REGISTRY_AVRO_COMPATIBILITY_LEVEL: full_transitive
+    ports:
+      - "8081:8081"
+    networks:
+      - kafka-network
+
+    # ============ KAFKA UI ============
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    depends_on:
+      - kafka-1
+      - kafka-2
+      - kafka-3
+      - schema-registry
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local-kafka-cluster
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka-1:9092,kafka-2:9092,kafka-3:9092
+      KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema-registry:8081
+    ports:
+      - "8080:8080"
+    networks:
+      - kafka-network
+
+  #prometheus:
+  #  image: prom/prometheus:v2.48.1
+  #  container_name: lab-prometheus
+  #  volumes:
+  #    - ./infrastructure/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+  #    - prometheus-data:/prometheus
+  #  command:
+  #    - '--config.file=/etc/prometheus/prometheus.yml'
+  #    - '--storage.tsdb.path=/prometheus'
+  #    - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+  #    - '--web.console.templates=/usr/share/prometheus/consoles'
+  #  ports:
+  #    - "9090:9090"
+  #  networks:
+  #    - lab-network
+#
+  #grafana:
+  #  image: grafana/grafana:10.2.3
+  #  container_name: lab-grafana
+  #  depends_on:
+  #    - prometheus
+  #  environment:
+  #    - GF_SECURITY_ADMIN_PASSWORD=admin
+  #    - GF_USERS_ALLOW_SIGN_UP=false
+  #  volumes:
+  #    - grafana-data:/var/lib/grafana
+  #    - ./infrastructure/grafana/dashboards:/etc/grafana/provisioning/dashboards
+  #    - ./infrastructure/grafana/datasources:/etc/grafana/provisioning/datasources
+  #  ports:
+  #    - "3000:3000"
+  #  networks:
+  #    - lab-network
+#
+  #jaeger:
+  #  image: jaegertracing/all-in-one:1.53
+  #  container_name: lab-jaeger
+  #  environment:
+  #    - COLLECTOR_OTLP_ENABLED=true
+  #  ports:
+  #    - "16686:16686"  # UI
+  #    - "4317:4317"    # OTLP gRPC
+  #    - "4318:4318"    # OTLP HTTP
+  #  networks:
+  #    - lab-network
+#
+  #redis:
+  #  image: redis:7-alpine
+  #  container_name: lab-redis
+  #  command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+  #  volumes:
+  #    - redis-data:/data
+  #  ports:
+  #    - "6379:6379"
+  #  networks:
+  #    - lab-network
+  #  healthcheck:
+  #    test: [ "CMD", "redis-cli", "ping" ]
+  #    interval: 10s
+  #    timeout: 5s
+  #    retries: 5
+
+networks:
+  kafka-network:
+    driver: bridge
+
+volumes:
+  kafka-1-data:
+  kafka-2-data:
+  kafka-3-data:
+  postgres_data:
