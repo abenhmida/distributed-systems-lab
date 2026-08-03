@@ -3,6 +3,7 @@ package com.krizaldis.distributedsystem.order.infrastructure.web.controller
 import com.krizaldis.common.id.OrderId
 import com.krizaldis.common.result.Failure
 import com.krizaldis.common.result.Success
+import com.krizaldis.distributedsystem.order.application.port.inbound.GetOrderUseCase
 import com.krizaldis.distributedsystem.order.infrastructure.web.mapper.OrderWebMapper
 import com.krizaldis.distributedsystem.order.infrastructure.web.response.OrderResponse
 import org.springframework.http.HttpStatus
