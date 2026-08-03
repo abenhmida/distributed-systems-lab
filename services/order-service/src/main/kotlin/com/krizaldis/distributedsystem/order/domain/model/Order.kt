@@ -1,0 +1,58 @@
+package com.krizaldis.distributedsystem.order.domain.model
+
+import com.krizaldis.common.domain.AggregateRoot
+import com.krizaldis.common.id.OrderId
+import com.krizaldis.distributedsystem.order.domain.exception.InvalidOrderStateException
+
+class Order private constructor(
+    id: OrderId,
+    val customerId: String,
+    private val items: MutableList<OrderItem>,
+    var status: OrderStatus
+) : AggregateRoot<OrderId>(id) {
+
+    companion object {
+        fun create(id: OrderId, customerId: String, items: List<OrderItem>): Order {
+            require(customerId.isNotBlank())
+            require(items.isNotEmpty())
+
+            val order = Order(
+                id = id,
+                customerId = customerId,
+                items = items.toMutableList(),
+                status = OrderStatus.CREATED
+            )
+            return order
+        }
+    }
+
+    fun items(): List<OrderItem> = items.toList()
+
+    fun total(): Money = items.fold(Money.ZERO) { total, item ->
+        total + item.total()
+    }
+
+    fun confirm() {
+        require(status == OrderStatus.CREATED) {
+            throw InvalidOrderStateException("Order cannot be confirmed")
+        }
+        status = OrderStatus.CONFIRMED
+    }
+
+    fun markPaid() {
+        require(status == OrderStatus.CONFIRMED)
+        status = OrderStatus.PAID
+    }
+
+    fun ship() {
+        require(status == OrderStatus.PAID)
+        status = OrderStatus.SHIPPED
+    }
+
+    fun cancel() {
+        require(status == OrderStatus.CREATED) {
+            throw InvalidOrderStateException("Only newly created orders can be cancelled")
+        }
+        status = OrderStatus.CANCELLED
+    }
+}
