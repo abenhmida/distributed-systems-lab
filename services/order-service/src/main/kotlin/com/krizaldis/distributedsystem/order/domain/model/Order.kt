@@ -34,7 +34,7 @@ class Order private constructor(
             return Order(
                 id = id,
                 customerId = customerId,
-                items = mutableListOf(),
+                items = items.toMutableList(),
                 status = status
             )
         }
