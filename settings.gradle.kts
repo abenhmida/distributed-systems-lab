@@ -3,6 +3,7 @@ rootProject.name = "distributed-systems-lab"
 include(
     "shared:common",
     "shared:testing",
+    "shared:kafka",
 
     "services:order-service",
 )
@@ -15,6 +16,9 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         mavenCentral()
+    }
+    plugins {
+        kotlin("plugin.spring") version "2.3.20"
     }
 }
 plugins {

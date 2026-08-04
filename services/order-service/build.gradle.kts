@@ -7,15 +7,19 @@ plugins {
 }
 
 dependencies {
-    //implementation(project(":shared:common"))
     implementation(projects.shared.common)
+    implementation(projects.shared.kafka)
+
     implementation(libs.spring.boot.starter)
     implementation(libs.spring.boot.web)
     implementation(libs.spring.boot.validation)
     implementation(libs.spring.boot.data.jpa)
     implementation(libs.flyway)
     implementation(libs.flyway.database.postgresql)
+    implementation(libs.micrometer.core)
+
     runtimeOnly(libs.postgresql)
+
     testImplementation(libs.spring.boot.test)
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.assertj)

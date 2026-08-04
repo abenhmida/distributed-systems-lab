@@ -1,6 +1,6 @@
 package com.krizaldis.distributedsystem.order.infrastructure.web.advice
 
-import com.krizaldis.common.exception.DomainException
+import com.krizaldis.distributedsystem.common.exception.DomainException
 import com.krizaldis.distributedsystem.order.infrastructure.web.response.ErrorResponse
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.http.HttpStatus

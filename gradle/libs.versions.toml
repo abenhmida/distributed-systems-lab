@@ -47,10 +47,18 @@ opentelemetry = "1.51.0"
 
 [libraries]
 spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter" }
+spring-boot = { module = "org.springframework.boot:spring-boot", version.ref = "spring-boot" }
+spring-context = { module = "org.springframework:spring-context" }
+spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor" }
 spring-boot-web = { module = "org.springframework.boot:spring-boot-starter-web" }
 spring-boot-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
 spring-boot-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
 spring-boot-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+
+spring-kafka = { module = "org.springframework.kafka:spring-kafka", version.ref = "kafka" }
+
+micrometer-core = { module = "io.micrometer:micrometer-core", version.ref = "micrometer" }
+
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 flyway = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
 flyway-database-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "flyway" }

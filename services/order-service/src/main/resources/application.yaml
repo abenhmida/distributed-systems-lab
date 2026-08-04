@@ -15,3 +15,6 @@ spring:
       - classpath:db/migration
 server:
   port: 8082
+
+outbox:
+  poll-interval: 1000

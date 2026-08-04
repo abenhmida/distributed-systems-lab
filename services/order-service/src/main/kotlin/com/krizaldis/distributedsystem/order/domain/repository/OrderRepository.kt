@@ -1,6 +1,6 @@
 package com.krizaldis.distributedsystem.order.domain.repository
 
-import com.krizaldis.common.id.OrderId
+import com.krizaldis.distributedsystem.common.id.OrderId
 import com.krizaldis.distributedsystem.order.domain.model.Order
 
 interface OrderRepository {

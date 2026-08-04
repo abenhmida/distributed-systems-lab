@@ -1,7 +1,7 @@
 package com.krizaldis.distributedsystem.order.domain.event
 
-import com.krizaldis.common.domain.DomainEvent
-import com.krizaldis.common.id.EventId
+import com.krizaldis.distributedsystem.common.domain.DomainEvent
+import com.krizaldis.distributedsystem.common.id.EventId
 import java.time.Instant
 
 data class OrderCreated(

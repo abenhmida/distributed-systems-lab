@@ -1,8 +1,7 @@
 package com.krizaldis.distributedsystem.order.domain.model
 
-import com.krizaldis.common.domain.ValueObject
+import com.krizaldis.distributedsystem.common.domain.ValueObject
 import java.math.BigDecimal
-import java.util.Currency
 
 data class Money(
     val amount: BigDecimal,

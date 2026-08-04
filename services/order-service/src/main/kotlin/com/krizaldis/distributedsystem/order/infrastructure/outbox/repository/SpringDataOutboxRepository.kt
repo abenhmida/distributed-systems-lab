@@ -4,21 +4,19 @@ import com.krizaldis.distributedsystem.order.infrastructure.outbox.entity.Outbox
 import com.krizaldis.distributedsystem.order.infrastructure.outbox.model.OutboxEvent
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.jpa.repository.Query
+import org.springframework.data.jpa.repository.NativeQuery
 import java.util.UUID
 
 interface SpringDataOutboxRepository : JpaRepository<OutboxEventEntity, UUID> {
 
-    @Query(
+    @NativeQuery(
         """
-        select e
-        from OutboxEventEntity e
-        where e.publishedAt is null
-        and (
-            e.nextRetryAt is null
-            or e.nextRetryAt <= CURRENT_TIMESTAMP
-        )
-        order by e.occurredAt
+        SELECT *
+            FROM outbox_events
+        WHERE published_at IS NULL AND (next_retry_at IS NULL OR next_retry_at <= NOW())
+        ORDER BY occurred_at
+        LIMIT :limit
+        FOR UPDATE SKIP LOCKED;
         """
     )
     fun findPending(pageable: Pageable): List<OutboxEvent>

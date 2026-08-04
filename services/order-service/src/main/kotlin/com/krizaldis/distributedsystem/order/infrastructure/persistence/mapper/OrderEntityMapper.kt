@@ -1,6 +1,6 @@
 package com.krizaldis.distributedsystem.order.infrastructure.persistence.mapper
 
-import com.krizaldis.common.id.OrderId
+import com.krizaldis.distributedsystem.common.id.OrderId
 import com.krizaldis.distributedsystem.order.domain.model.Money
 import com.krizaldis.distributedsystem.order.domain.model.Order
 import com.krizaldis.distributedsystem.order.domain.model.OrderItem

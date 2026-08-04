@@ -1,6 +1,6 @@
 package com.krizaldis.distributedsystem.order.domain.model
 
-import com.krizaldis.common.domain.ValueObject
+import com.krizaldis.distributedsystem.common.domain.ValueObject
 
 data class OrderItem(
     val productId: String,
