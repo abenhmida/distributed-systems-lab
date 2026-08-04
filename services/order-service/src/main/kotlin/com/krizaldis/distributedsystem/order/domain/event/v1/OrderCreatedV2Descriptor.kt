@@ -1,14 +1,13 @@
 package com.krizaldis.distributedsystem.order.domain.event.v1
 
-import com.krizaldis.distributedsystem.common.event.EventDescriptor
 import com.krizaldis.distributedsystem.common.event.EventTypes
-import kotlin.reflect.KClass
+import com.krizaldis.distributedsystem.common.event.EventVersion
+import com.krizaldis.distributedsystem.common.event.descriptor.AbstractEventDescriptor
+import org.springframework.stereotype.Component
 
-object OrderCreatedV1Descriptor : EventDescriptor<OrderCreated> {
-    override val eventType: String
-        get() = EventTypes.ORDER_CREATED
-    override val version: Int
-        get() = 1
-    override val payloadType: KClass<OrderCreated>
-        get() = OrderCreated::class
-}
+@Component
+object OrderCreatedV1Descriptor : AbstractEventDescriptor<OrderCreated>(
+    eventType = EventTypes.ORDER_CREATED,
+    version = EventVersion(1),
+    payloadType = OrderCreated::class
+)
