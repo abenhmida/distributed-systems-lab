@@ -1,6 +1,8 @@
 package com.krizaldis.distributedsystem.common.event
 
-data class EventEnvelope<T>(
+import com.krizaldis.distributedsystem.common.domain.DomainEvent
+
+data class EventEnvelope<T: DomainEvent>(
     val metadata: EventMetadata,
     val payload: T
 )

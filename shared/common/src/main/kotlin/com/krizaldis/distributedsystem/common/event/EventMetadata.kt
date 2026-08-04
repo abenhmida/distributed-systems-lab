@@ -7,10 +7,13 @@ data class EventMetadata(
     val aggregateId: String,
     val aggregateType: String,
     val eventType: String,
-    val version: Int,
+    val version: EventVersion,
     val occurredAt: Instant,
-    val correlationId: String? = null,
-    val causationId: String? = null,
-    val tenantId: String? = null
-
+    val producedAt: Instant,
+    val correlationId: CorrelationId,
+    val causationId: CausationId?,
+    val traceId: TraceId?,
+    val tenantId: TenantId?,
+    val producer: String,
+    val headers: EventHeaders = EventHeaders()
 )
