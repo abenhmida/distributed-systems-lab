@@ -20,7 +20,7 @@ class EventMetadataBuilder(
         eventId = event.eventId.toString(),
         aggregateId = event.aggregateId,
         aggregateType = aggregateType,
-        eventType = event.eventType,
+        eventType = event.eventType.value,
         version = EventVersion(event.version),
         occurredAt = event.occurredAt,
         producedAt = Instant.now(clock),

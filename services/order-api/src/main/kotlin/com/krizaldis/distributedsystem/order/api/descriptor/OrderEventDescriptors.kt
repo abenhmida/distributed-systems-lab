@@ -1,0 +1,8 @@
+package com.krizaldis.distributedsystem.order.api.descriptor
+
+object OrderCreatedV1Descriptor
+object OrderCreatedV2Descriptor
+object OrderCreatedV3Descriptor
+object OrderCancelledV1Descriptor
+object OrderConfirmedV1Descriptor
+object OrderRejectedV1Descriptor

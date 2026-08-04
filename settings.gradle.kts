@@ -4,7 +4,15 @@ include(
     "shared:common",
     "shared:kafka",
 
+    "services:order-api",
+
+    //"services:inventory-api",
+    //"services:payment-api",
+    //"services:shipping-api",
     "services:order-service",
+    //"services:inventory-service",
+    //"services:payment-service",
+    //"services:shipping-service"
 )
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
