@@ -3,7 +3,7 @@ package com.krizaldis.distributedsystem.order.domain.model
 import com.krizaldis.distributedsystem.common.domain.AggregateRoot
 import com.krizaldis.distributedsystem.common.id.EventId
 import com.krizaldis.distributedsystem.common.id.OrderId
-import com.krizaldis.distributedsystem.order.domain.event.OrderCreated
+import com.krizaldis.distributedsystem.order.domain.event.v1.OrderCreated
 import com.krizaldis.distributedsystem.order.domain.exception.InvalidOrderStateException
 import java.time.Instant
 
