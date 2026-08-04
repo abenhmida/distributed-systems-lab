@@ -5,6 +5,9 @@ plugins {
 
 dependencies {
     implementation(projects.shared.common)
+
+    implementation(libs.jackson.module.kotlin)
+
     implementation(libs.spring.boot)
     implementation(libs.spring.kafka)
     implementation(libs.kafka.clients)

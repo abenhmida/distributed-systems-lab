@@ -1,18 +1,17 @@
-package com.krizaldis.common.domain
+package com.krizaldis.distributedsystem.common.domain
 
-import com.krizaldis.distributedsystem.common.domain.EventFactory
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class EventMetadataTest {
 
     @Test
-    fun `should create event metadata`(): Unit {
+    fun `should create event metadata`() {
         val metadata = EventFactory.metadata(
             eventType = "OrderCreated",
-            aggregateType = "Order",
             version = 1,
             aggregateId = "123",
+            aggregateType = "Order",
         )
 
         assertThat(metadata.eventType).isEqualTo("OrderCreated")

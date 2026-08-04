@@ -2,7 +2,6 @@ rootProject.name = "distributed-systems-lab"
 
 include(
     "shared:common",
-    "shared:testing",
     "shared:kafka",
 
     "services:order-service",
