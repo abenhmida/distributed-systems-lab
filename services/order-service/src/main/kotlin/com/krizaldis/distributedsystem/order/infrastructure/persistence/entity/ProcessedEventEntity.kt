@@ -1,12 +1,13 @@
 package com.krizaldis.distributedsystem.order.infrastructure.persistence.entity
 
+import com.krizaldis.distributedsystem.common.idempotency.ProcessedEvent
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.IdClass
 import jakarta.persistence.Table
+import java.time.Instant
 import java.util.UUID
-import kotlin.time.Instant
 
 @Entity
 @IdClass(ProcessedEventEntityId::class)
@@ -17,9 +18,19 @@ class ProcessedEventEntity (
     val id: UUID,
 
     @Id
-    @Column("consumer_name")
+    @Column(name = "consumer_name")
     val consumerName: String,
 
-    @Column("processed_at")
+    @Column(name = "processed_at")
     val processedAt: Instant,
-)
+) {
+    companion object {
+        fun from(processedEvent: ProcessedEvent): ProcessedEventEntity {
+            return ProcessedEventEntity(
+                id = processedEvent.eventId,
+                consumerName = processedEvent.consumer,
+                processedAt = processedEvent.processedAt
+            )
+        }
+    }
+}

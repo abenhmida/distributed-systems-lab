@@ -1,15 +1,15 @@
 package com.krizaldis.distributedsystem.common.event.fixture// TestFixtures.kt - place in src/test/kotlin/your/package/
 
 import com.krizaldis.distributedsystem.common.domain.DomainEvent
-import com.krizaldis.distributedsystem.common.event.CausationId
-import com.krizaldis.distributedsystem.common.event.CorrelationId
 import com.krizaldis.distributedsystem.common.event.EventEnvelope
 import com.krizaldis.distributedsystem.common.event.EventHeaders
+import com.krizaldis.distributedsystem.common.event.EventId
 import com.krizaldis.distributedsystem.common.event.EventMetadata
 import com.krizaldis.distributedsystem.common.event.EventVersion
-import com.krizaldis.distributedsystem.common.event.TenantId
-import com.krizaldis.distributedsystem.common.event.TraceId
-import com.krizaldis.distributedsystem.common.id.EventId
+import com.krizaldis.distributedsystem.common.messaging.CausationId
+import com.krizaldis.distributedsystem.common.messaging.CorrelationId
+import com.krizaldis.distributedsystem.common.messaging.TenantId
+import com.krizaldis.distributedsystem.common.messaging.TraceId
 import java.time.Instant
 import java.util.UUID
 
@@ -54,7 +54,7 @@ object TestFixtures {
         occurredAt = occurredAt,
         producedAt = producedAt,
         correlationId = correlationId,
-        causationId = causationId,
+        causationId = causationId ?: CausationId.generate(),
         traceId = traceId,
         tenantId = tenantId,
         producer = producer,

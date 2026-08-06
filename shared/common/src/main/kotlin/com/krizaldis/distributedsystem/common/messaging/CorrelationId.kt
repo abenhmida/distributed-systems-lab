@@ -1,4 +1,4 @@
-package com.krizaldis.distributedsystem.common.event
+package com.krizaldis.distributedsystem.common.messaging
 
 import java.util.UUID
 

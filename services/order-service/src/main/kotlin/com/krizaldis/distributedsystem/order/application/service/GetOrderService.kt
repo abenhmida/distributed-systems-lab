@@ -1,11 +1,11 @@
 package com.krizaldis.distributedsystem.order.application.service
 
-import com.krizaldis.distributedsystem.common.id.OrderId
 import com.krizaldis.distributedsystem.common.result.DomainError
 import com.krizaldis.distributedsystem.common.result.ErrorCode
 import com.krizaldis.distributedsystem.common.result.Result
 import com.krizaldis.distributedsystem.common.result.failure
 import com.krizaldis.distributedsystem.common.result.success
+import com.krizaldis.distributedsystem.order.api.value.OrderId
 import com.krizaldis.distributedsystem.order.application.dto.OrderDto
 import com.krizaldis.distributedsystem.order.application.mapper.OrderMapper
 import com.krizaldis.distributedsystem.order.application.port.inbound.GetOrderUseCase

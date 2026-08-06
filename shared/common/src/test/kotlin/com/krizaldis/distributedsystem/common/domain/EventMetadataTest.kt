@@ -1,5 +1,6 @@
 package com.krizaldis.distributedsystem.common.domain
 
+import com.krizaldis.distributedsystem.common.event.EventVersion
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -15,6 +16,6 @@ class EventMetadataTest {
         )
 
         assertThat(metadata.eventType).isEqualTo("OrderCreated")
-        assertThat(metadata.version).isEqualTo(1)
+        assertThat(metadata.version).isEqualTo(EventVersion(1))
     }
 }

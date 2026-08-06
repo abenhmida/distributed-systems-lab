@@ -1,6 +1,10 @@
 package com.krizaldis.distributedsystem.common.event
 
 import com.krizaldis.distributedsystem.common.domain.DomainEvent
+import com.krizaldis.distributedsystem.common.messaging.CausationId
+import com.krizaldis.distributedsystem.common.messaging.CorrelationId
+import com.krizaldis.distributedsystem.common.messaging.TenantId
+import com.krizaldis.distributedsystem.common.messaging.TraceId
 
 class EventEnvelopeFactory(
     private val metadataBuilder: EventMetadataBuilder

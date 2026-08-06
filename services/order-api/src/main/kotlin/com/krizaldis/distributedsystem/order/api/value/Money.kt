@@ -1,15 +1,10 @@
-package com.krizaldis.distributedsystem.order.domain.model
+package com.krizaldis.distributedsystem.order.api.value
 
-import com.krizaldis.distributedsystem.common.domain.ValueObject
 import java.math.BigDecimal
 
-data class Money(
-    val amount: BigDecimal,
-    val currency: String,
-) : ValueObject() {
+data class Money(val amount: BigDecimal, val currency: Currency) {
     init {
         require(amount >= BigDecimal.ZERO) { "Amount must be positive" }
-        require(currency.isNotBlank()) { "Currency is required" }
     }
 
     operator fun plus(other: Money): Money {
@@ -22,6 +17,6 @@ data class Money(
     }
 
     companion object {
-        val ZERO = Money(BigDecimal.ZERO, "EUR")
+        val ZERO = Money(BigDecimal.ZERO, Currency.EUR)
     }
 }

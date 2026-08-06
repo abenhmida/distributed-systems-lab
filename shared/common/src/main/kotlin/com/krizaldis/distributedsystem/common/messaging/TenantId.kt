@@ -1,4 +1,4 @@
-package com.krizaldis.distributedsystem.common.event
+package com.krizaldis.distributedsystem.common.messaging
 
 @JvmInline
 value class TenantId(

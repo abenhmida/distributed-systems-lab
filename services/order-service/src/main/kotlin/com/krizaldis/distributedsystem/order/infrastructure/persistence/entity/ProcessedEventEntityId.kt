@@ -7,6 +7,6 @@ class ProcessedEventEntityId(
     @Column(name = "event_id")
     val id: UUID,
 
-    @Column("consumer_name")
+    @Column(name = "consumer_name")
     val consumerName: String,
 )

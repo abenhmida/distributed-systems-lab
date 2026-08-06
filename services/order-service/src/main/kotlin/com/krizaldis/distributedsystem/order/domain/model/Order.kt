@@ -1,14 +1,15 @@
 package com.krizaldis.distributedsystem.order.domain.model
 
 import com.krizaldis.distributedsystem.common.domain.AggregateRoot
-import com.krizaldis.distributedsystem.common.id.EventId
-import com.krizaldis.distributedsystem.common.id.OrderId
+import com.krizaldis.distributedsystem.common.event.EventId
+import com.krizaldis.distributedsystem.order.api.value.Money
+import com.krizaldis.distributedsystem.order.api.value.OrderId
 import com.krizaldis.distributedsystem.order.domain.event.v1.OrderCreated
 import com.krizaldis.distributedsystem.order.domain.exception.InvalidOrderStateException
 import java.time.Instant
 
 class Order private constructor(
-    id: OrderId,
+    override val id: OrderId,
     val customerId: String,
     private val items: MutableList<OrderItem>,
     var status: OrderStatus
@@ -30,7 +31,7 @@ class Order private constructor(
                 OrderCreated(
                     eventId = EventId.random(),
                     occurredAt = Instant.now(),
-                    aggregateId = order.id.toString(),
+                    aggregateId = id.toString(),
                     customerId = customerId,
                     totalAmount = order.total()
                         .amount

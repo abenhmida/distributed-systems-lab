@@ -1,5 +1,9 @@
 package com.krizaldis.distributedsystem.common.event
 
+import com.krizaldis.distributedsystem.common.messaging.CausationId
+import com.krizaldis.distributedsystem.common.messaging.CorrelationId
+import com.krizaldis.distributedsystem.common.messaging.TenantId
+import com.krizaldis.distributedsystem.common.messaging.TraceId
 import java.time.Instant
 
 data class EventMetadata(
@@ -9,11 +13,11 @@ data class EventMetadata(
     val eventType: String,
     val version: EventVersion,
     val occurredAt: Instant,
-    val producedAt: Instant,
-    val correlationId: CorrelationId,
-    val causationId: CausationId?,
-    val traceId: TraceId?,
-    val tenantId: TenantId?,
-    val producer: String,
-    val headers: EventHeaders = EventHeaders()
+    val producedAt: Instant = Instant.now(),
+    val correlationId: CorrelationId = CorrelationId.generate(),
+    val causationId: CausationId = CausationId.generate(),
+    val traceId: TraceId? = TraceId("trace-id"),
+    val tenantId: TenantId? = null,
+    val producer: String? = null,
+    val headers: EventHeaders? = EventHeaders()
 )

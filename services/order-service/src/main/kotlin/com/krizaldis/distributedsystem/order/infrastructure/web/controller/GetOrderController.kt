@@ -1,8 +1,8 @@
 package com.krizaldis.distributedsystem.order.infrastructure.web.controller
 
-import com.krizaldis.distributedsystem.common.id.OrderId
 import com.krizaldis.distributedsystem.common.result.Failure
 import com.krizaldis.distributedsystem.common.result.Success
+import com.krizaldis.distributedsystem.order.api.value.OrderId
 import com.krizaldis.distributedsystem.order.application.port.inbound.GetOrderUseCase
 import com.krizaldis.distributedsystem.order.infrastructure.web.mapper.OrderWebMapper
 import com.krizaldis.distributedsystem.order.infrastructure.web.response.OrderResponse

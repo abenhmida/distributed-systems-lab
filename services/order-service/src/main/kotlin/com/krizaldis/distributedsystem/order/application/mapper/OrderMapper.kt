@@ -9,6 +9,6 @@ object OrderMapper {
         customerId = order.customerId,
         status = order.status.name,
         total = order.total().amount,
-        currency = order.total().currency
+        currency = order.total().currency.toString()
     )
 }

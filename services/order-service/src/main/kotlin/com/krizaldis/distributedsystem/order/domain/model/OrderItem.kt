@@ -1,6 +1,7 @@
 package com.krizaldis.distributedsystem.order.domain.model
 
 import com.krizaldis.distributedsystem.common.domain.ValueObject
+import com.krizaldis.distributedsystem.order.api.value.Money
 
 data class OrderItem(
     val productId: String,

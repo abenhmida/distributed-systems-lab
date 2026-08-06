@@ -1,7 +1,7 @@
 package com.krizaldis.distributedsystem.common.domain
 
+import com.krizaldis.distributedsystem.common.event.EventId
 import com.krizaldis.distributedsystem.common.event.EventType
-import com.krizaldis.distributedsystem.common.id.EventId
 import java.time.Instant
 
 /**

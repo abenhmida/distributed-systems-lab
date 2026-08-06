@@ -1,6 +1,6 @@
 package com.krizaldis.distributedsystem.order.infrastructure.outbox.repository
 
-import com.krizaldis.distributedsystem.common.id.OrderId
+import com.krizaldis.distributedsystem.order.api.value.OrderId
 import com.krizaldis.distributedsystem.order.application.port.outbound.ExistsOrderPort
 import com.krizaldis.distributedsystem.order.application.port.outbound.LoadOrderPort
 import com.krizaldis.distributedsystem.order.application.port.outbound.SaveOrderPort

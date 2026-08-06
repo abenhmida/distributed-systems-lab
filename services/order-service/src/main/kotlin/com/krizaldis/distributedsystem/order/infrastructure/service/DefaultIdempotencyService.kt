@@ -1,8 +1,8 @@
 package com.krizaldis.distributedsystem.order.infrastructure.service
 
+import com.krizaldis.distributedsystem.common.idempotency.IdempotencyService
 import com.krizaldis.distributedsystem.common.idempotency.ProcessedEvent
 import com.krizaldis.distributedsystem.common.idempotency.ProcessedEventRepository
-import com.krizaldis.distributedsystem.common.service.IdempotencyService
 import org.springframework.stereotype.Service
 import java.time.Instant
 import java.util.UUID

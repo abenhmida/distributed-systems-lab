@@ -9,6 +9,7 @@ plugins {
 dependencies {
     implementation(projects.shared.common)
     implementation(projects.shared.kafka)
+    implementation(project(":services:order-api"))
 
     implementation(libs.spring.boot.starter)
     implementation(libs.spring.boot.web)
@@ -17,6 +18,7 @@ dependencies {
     implementation(libs.flyway)
     implementation(libs.flyway.database.postgresql)
     implementation(libs.micrometer.core)
+
 
     runtimeOnly(libs.postgresql)
 

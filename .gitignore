@@ -8,3 +8,4 @@ services/order-service/build
 .kotlin/sessions
 shared/kafka/build
 shared/testing/build
+services/order-api/build

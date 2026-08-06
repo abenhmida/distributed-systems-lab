@@ -1,7 +1,9 @@
 package com.krizaldis.distributedsystem.order.domain.event.v2
 
 import com.krizaldis.distributedsystem.common.domain.DomainEvent
-import com.krizaldis.distributedsystem.common.id.EventId
+import com.krizaldis.distributedsystem.common.event.EventId
+import com.krizaldis.distributedsystem.common.event.EventType
+import com.krizaldis.distributedsystem.order.api.constant.OrderEvents
 import java.time.Instant
 
 data class OrderCreated(
@@ -14,6 +16,6 @@ data class OrderCreated(
 ) : DomainEvent {
     override val version: Int
         get() = 2
-    override val eventType: String
-        get() = "OrderCreated"
+    override val eventType: EventType
+        get() = OrderEvents.ORDER_CREATED
 }
