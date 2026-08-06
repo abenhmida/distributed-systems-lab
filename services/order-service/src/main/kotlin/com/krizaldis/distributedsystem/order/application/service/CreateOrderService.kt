@@ -11,7 +11,6 @@ import com.krizaldis.distributedsystem.order.application.mapper.OrderMapper
 import com.krizaldis.distributedsystem.order.application.port.inbound.CreateOrderUseCase
 import com.krizaldis.distributedsystem.order.application.port.outbound.SaveOrderPort
 import com.krizaldis.distributedsystem.order.domain.model.Order
-import com.krizaldis.distributedsystem.order.domain.model.OrderItem
 import com.krizaldis.distributedsystem.order.infrastructure.outbox.OutboxRepository
 import com.krizaldis.distributedsystem.order.infrastructure.outbox.factory.OutboxEventFactory
 import org.springframework.stereotype.Service

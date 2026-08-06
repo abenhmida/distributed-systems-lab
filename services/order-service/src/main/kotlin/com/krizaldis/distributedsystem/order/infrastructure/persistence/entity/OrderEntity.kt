@@ -1,6 +1,5 @@
 package com.krizaldis.distributedsystem.order.infrastructure.persistence.entity
 
-import com.krizaldis.distributedsystem.order.domain.model.OrderStatus
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity

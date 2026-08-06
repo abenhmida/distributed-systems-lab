@@ -1,4 +1,4 @@
-package com.krizaldis.distributedsystem.order.domain.model
+package com.krizaldis.distributedsystem.order.api.value
 
 enum class OrderStatus {
     CREATED,

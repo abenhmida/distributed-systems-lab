@@ -4,7 +4,6 @@ import com.krizaldis.distributedsystem.order.api.value.Currency
 import com.krizaldis.distributedsystem.order.api.value.Money
 import com.krizaldis.distributedsystem.order.api.value.OrderId
 import com.krizaldis.distributedsystem.order.domain.model.Order
-import com.krizaldis.distributedsystem.order.domain.model.OrderItem
 import com.krizaldis.distributedsystem.order.infrastructure.persistence.entity.OrderEntity
 import com.krizaldis.distributedsystem.order.infrastructure.persistence.entity.OrderItemEntity
 

@@ -5,8 +5,11 @@ data class OrderItem(
     val quantity: Int,
     val unitPrice: Money
 ) {
-
     init {
         require(quantity > 0)
+    }
+
+    fun subtotal(): Money {
+        return unitPrice * quantity
     }
 }
